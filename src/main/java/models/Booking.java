@@ -11,7 +11,7 @@ import java.time.LocalDateTime;
 public class Booking {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
     private int roomId;
@@ -22,7 +22,7 @@ public class Booking {
     public Booking() {
     }
 
-    public Booking(int roomId, int userId, LocalDateTime startDate, LocalDateTime endDate) {
+    public Booking(Integer roomId, Integer userId, LocalDateTime startDate, LocalDateTime endDate) {
         this.roomId = roomId;
         this.userId = userId;
         this.startDate = startDate;
@@ -31,6 +31,10 @@ public class Booking {
 
     public int getId() {
         return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public int getRoomId() {

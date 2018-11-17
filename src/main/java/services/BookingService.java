@@ -21,4 +21,9 @@ public class BookingService {
         return em.createNamedQuery("Booking.findById", Booking.class).setParameter("id", id).getSingleResult();
     }
 
+    public Booking placeBooking(Booking booking) {
+        em.persist(booking);
+        return booking;
+    }
+
 }

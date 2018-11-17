@@ -3,15 +3,14 @@ package controllers;
 import models.Booking;
 import org.wildfly.swarm.spi.runtime.annotations.ConfigurationValue;
 import services.BookingService;
+import utils.Parser;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 import javax.persistence.NoResultException;
 import javax.transaction.Transactional;
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
-import javax.ws.rs.PathParam;
-import javax.ws.rs.Produces;
+import javax.ws.rs.*;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.logging.Logger;
 
@@ -66,5 +65,22 @@ public class IndexController {
         return booking;
     }
 
+    @POST
+    @Path("bookRoom/{roomId}")
+    @Produces("application/json")
+    public Booking bookRoom(@PathParam("roomId") String roomID,
+                            @HeaderParam("uId") String uId,
+                            @HeaderParam("startDate") String startDate,
+                            @HeaderParam("endDate") String endDate
+                            ) {
+        Integer parsedRoomId = Parser.parseInt("room", roomID);
+        Integer parsedUserId = Parser.parseInt("user", uId);
+        LocalDateTime parsedStartDate = Parser.parseDate("start", startDate);
+        LocalDateTime parsedEndDate = Parser.parseDate("end", endDate);
+
+        Booking booking = new Booking(parsedRoomId, parsedUserId, parsedStartDate, parsedEndDate);
+        booking = bookingService.placeBooking(booking);
+        return booking;
+    }
 
 }

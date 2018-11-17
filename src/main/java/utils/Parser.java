@@ -30,18 +30,21 @@ public class Parser {
         LocalDateTime parsedDate = null;
 
         if (year != null && month != null && day != null) {
-            parsedDate = LocalDateTime.now()
-                    .withYear(year)
-                    .withMonth(month)
-                    .withDayOfMonth(day)
-                    .withHour(0)
-                    .withMinute(0);
-
-            if (type.equals("end")) {
-                parsedDate.withHour(23)
+            if (type.equals("start")) {
+                parsedDate = LocalDateTime.now()
+                        .withYear(year)
+                        .withMonth(month)
+                        .withDayOfMonth(day)
+                        .withHour(0)
+                        .withMinute(0);
+            } else {
+                parsedDate = LocalDateTime.now()
+                        .withYear(year)
+                        .withMonth(month)
+                        .withDayOfMonth(day)
+                        .withHour(23)
                         .withMinute(59);
             }
-
         } else {
             LOG.warning("Some of the dates cannot be parsed, returning null");
         }

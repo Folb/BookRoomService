@@ -26,4 +26,8 @@ public class BookingService {
         return booking;
     }
 
+    public List<Booking> getAllByUserId(int userId) {
+        return em.createNamedQuery("Booking.findByUserId", Booking.class).setParameter("userId", userId).getResultList();
+    }
+
 }

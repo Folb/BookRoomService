@@ -83,4 +83,20 @@ public class IndexController {
         return booking;
     }
 
+    @GET
+    @Path("user/{userId}/bookings")
+    @Produces("application/json")
+    public List<Booking> getBookingsByUserId(@PathParam("userId") String userId) {
+        Integer parsedUserId = null;
+
+        try {
+            parsedUserId = Integer.parseInt(userId);
+        } catch (NumberFormatException e) {
+            LOG.warning("Could not parse " + userId + " to int.");
+        }
+
+        return bookingService.getAllByUserId(parsedUserId);
+
+    }
+
 }

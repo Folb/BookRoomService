@@ -6,7 +6,8 @@ import java.time.LocalDateTime;
 @Entity
 @NamedQueries({
         @NamedQuery(name = "Booking.findAll", query = "SELECT b from Booking b"),
-        @NamedQuery(name = "Booking.findById", query = "SELECT b FROM Booking b WHERE b.id = :id")
+        @NamedQuery(name = "Booking.findById", query = "SELECT b FROM Booking b WHERE b.id = :id"),
+        @NamedQuery(name = "Booking.findByUserId", query = "SELECT b FROM Booking b WHERE b.userId = :userId")
 })
 public class Booking {
 

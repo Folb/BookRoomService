@@ -71,8 +71,7 @@ public class IndexController {
     public Booking bookRoom(@PathParam("roomId") String roomID,
                             @HeaderParam("uId") String uId,
                             @HeaderParam("startDate") String startDate,
-                            @HeaderParam("endDate") String endDate
-                            ) {
+                            @HeaderParam("endDate") String endDate) {
         Integer parsedRoomId = Parser.parseInt("room", roomID);
         Integer parsedUserId = Parser.parseInt("user", uId);
         LocalDateTime parsedStartDate = Parser.parseDate("start", startDate);

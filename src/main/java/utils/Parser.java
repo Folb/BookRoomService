@@ -15,7 +15,7 @@ public class Parser {
         try {
             parsedInt = Integer.parseInt(i);
         } catch (NumberFormatException e) {
-            LOG.warning("Could not parse " + i + "to int.");
+            LOG.warning("Could not " + type + " of value: " + i + " to int.");
         }
 
         return parsedInt;
